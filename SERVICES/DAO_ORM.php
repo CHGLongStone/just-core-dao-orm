@@ -70,7 +70,7 @@ abstract class VIEW extends DAO {
 	*/
 	public function init($args){
 		#
-		echo __METHOD__.__LINE__.'$args<pre>['.var_export($args, true).']</pre>'.'<br>'.PHP_EOL; 
+		echo __METHOD__.'@'.__LINE__.'$args<pre>['.var_export($args, true).']</pre>'.'<br>'.PHP_EOL; 
 		return parent::__construct($args);
 	}
 		/**
@@ -78,7 +78,7 @@ abstract class VIEW extends DAO {
 	* @param param 
 	* @return return  
 	public function initializeFromSchema($DSN, $tableName, $set_fk){
-		echo __METHOD__.__LINE__.' '.'<br>'.PHP_EOL; 
+		echo __METHOD__.'@'.__LINE__.' '.'<br>'.PHP_EOL; 
 		parent::initializeFromSchema($DSN, $tableName, $set_fk);
 	}
 	*/

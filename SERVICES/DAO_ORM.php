@@ -18,7 +18,7 @@ use JCORE\DAO\DAO as DAO;
  *
  * @package JCORE\SERVICE\DAO_ORM 
 */
-abstract class VIEW extends DAO { 
+class VIEW extends DAO { 
 	/**
 	 * default view definition
 	 * 
@@ -27,13 +27,13 @@ abstract class VIEW extends DAO {
 	 * @var array
 	 */
 	public $VIEW = array();
-	/***
-	* DESCRIPTOR: 
-	* enforce a method to parse the request in the sub class
-	* @param mixed raw_data 
-	* @return return NULL  
-	*/
-	abstract public function parseRequest($raw_data);
+
+
+
+
+
+
+
 	/**
 	* DESCRIPTOR: 
 	* first we check the definition has been set
@@ -44,21 +44,51 @@ abstract class VIEW extends DAO {
 	* @return return  
 	*/
 	public function __construct($args = null){
+		/**
+		* figure out where this was from and fix the error object
 		$failedConfig = array(
-				0 => array(
-					'EXCEPTION' =>array(
-						'ID' => 120,
-						'MSG' => '$args["ORM_VIEW"]:=:['.$args["ORM_VIEW"].'] Not Defined',
-					),
-				);
+
+				'EXCEPTION' =>array(
+				'ID' => 120,
+				'MSG' => '$args["ORM_VIEW"]:=:['.$args["ORM_VIEW"].'] Not Defined',
+
+
+				),
 			);
-		if(isset($args["ORM_VIEW"]) && !is_array($args["ORM_VIEW"]) && 0 <= count($args["ORM_VIEW"])){
-			#return $failedConfig;
-		}elseif(!isset($this->VIEW["ORM_VIEW"]) && !is_array($args["ORM_VIEW"]) && 0 <= count($args["ORM_VIEW"])){
-			$failedConfig[0]['EXCEPTION']['MSG'] = $failedConfig[0]['EXCEPTION']['MSG'].' in extended entity  ['.get_called_class().']';
-		}
-		return $failedConfig;
+		*/
+		$failedConfig = array(
+			'result' => null,
+			'error' => array(
+				'Code' => 100,
+				'Message' => '$args["ORM_VIEW"]:=:['.$args["ORM_VIEW"].'] Not Defined',
+				'Data' => 'extended entity  ['.get_called_class().']',
+			),
+			'id' => null,
 		
+		);
+		if(!isset($args["ORM_VIEW"]){
+			return $failedConfig;
+		}
+		/*
+		if(
+			(!isset($args["ORM_VIEW"]) )
+			||
+			(
+				isset($args["ORM_VIEW"]) 
+				&& 
+				(!is_array($args["ORM_VIEW"]) && 0 == count($args["ORM_VIEW"]))
+			)
+		){
+			return $failedConfig;
+		}elseif(!isset($this->VIEW["ORM_VIEW"]) ){//&& !is_array($args["ORM_VIEW"]) && 0 <= count($args["ORM_VIEW"])
+			$failedConfig[0]['EXCEPTION']['MSG'] = $failedConfig[0]['EXCEPTION']['MSG'].' in extended entity  ['.get_called_class().']';
+			return $failedConfig;
+		}
+
+
+		*/
+		$this->VIEW = $GLOBALS['CONFIG_MANAGER']->getSetting($LOAD_ID = 'ORM_VIEW',$args["ORM_VIEW"]);
+		echo __METHOD__.'@'.__LINE__.'$this->VIEW<pre>['.var_export($this->VIEW, true).']</pre>'.'<br>'.PHP_EOL; 
 		//parent::__construct($args);
 		return;
 	}
@@ -70,7 +100,7 @@ abstract class VIEW extends DAO {
 	*/
 	public function init($args){
 		#
-		echo __METHOD__.'@'.__LINE__.'$args<pre>['.var_export($args, true).']</pre>'.'<br>'.PHP_EOL; 
+
 		return parent::__construct($args);
 	}
 		/**

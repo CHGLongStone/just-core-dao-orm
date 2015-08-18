@@ -66,7 +66,7 @@ class VIEW extends DAO {
 			'id' => null,
 		
 		);
-		if(!isset($args["ORM_VIEW"]){
+		if(!isset($args["ORM_VIEW"])){
 			return $failedConfig;
 		}
 		/*

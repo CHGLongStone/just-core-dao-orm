@@ -1,24 +1,22 @@
 <?php
 /**
- * this file requires a  
- * 
- * 
  * 
  * @author	Jason Medland<jason.medland@gmail.com>
- * @package	JCORE\SERVICE\DAO_ORM 
+ * @package	JCORE\SERVICE\DAO
  */
 
-namespace JCORE\SERVICE\DAO_ORM;
+
+namespace JCORE\SERVICE\DAO;
 use JCORE\DAO\DAO as DAO;
-
-
 
 /**
  * Class DAO_ORM
  *
- * @package JCORE\SERVICE\DAO_ORM 
+ * @package JCORE\SERVICE\DAO
 */
-class VIEW extends DAO { 
+class DAO_ORM {// extends DAO { 
+	
+	
 	/**
 	 * default view definition
 	 * 
@@ -29,6 +27,7 @@ class VIEW extends DAO {
 	public $VIEW = array();
 
 
+	
 
 
 
@@ -44,52 +43,8 @@ class VIEW extends DAO {
 	* @return return  
 	*/
 	public function __construct($args = null){
-		/**
-		* figure out where this was from and fix the error object
-		$failedConfig = array(
+		parent::__construct($args);
 
-				'EXCEPTION' =>array(
-				'ID' => 120,
-				'MSG' => '$args["ORM_VIEW"]:=:['.$args["ORM_VIEW"].'] Not Defined',
-
-
-				),
-			);
-		*/
-		$failedConfig = array(
-			'result' => null,
-			'error' => array(
-				'Code' => 100,
-				'Message' => '$args["ORM_VIEW"]:=:['.$args["ORM_VIEW"].'] Not Defined',
-				'Data' => 'extended entity  ['.get_called_class().']',
-			),
-			'id' => null,
-		
-		);
-		if(!isset($args["ORM_VIEW"])){
-			return $failedConfig;
-		}
-		/*
-		if(
-			(!isset($args["ORM_VIEW"]) )
-			||
-			(
-				isset($args["ORM_VIEW"]) 
-				&& 
-				(!is_array($args["ORM_VIEW"]) && 0 == count($args["ORM_VIEW"]))
-			)
-		){
-			return $failedConfig;
-		}elseif(!isset($this->VIEW["ORM_VIEW"]) ){//&& !is_array($args["ORM_VIEW"]) && 0 <= count($args["ORM_VIEW"])
-			$failedConfig[0]['EXCEPTION']['MSG'] = $failedConfig[0]['EXCEPTION']['MSG'].' in extended entity  ['.get_called_class().']';
-			return $failedConfig;
-		}
-
-
-		*/
-		$this->VIEW = $GLOBALS['CONFIG_MANAGER']->getSetting($LOAD_ID = 'ORM_VIEW',$args["ORM_VIEW"]);
-		echo __METHOD__.'@'.__LINE__.'$this->VIEW<pre>['.var_export($this->VIEW, true).']</pre>'.'<br>'.PHP_EOL; 
-		//parent::__construct($args);
 		return;
 	}
 	/**
@@ -103,7 +58,7 @@ class VIEW extends DAO {
 
 		return parent::__construct($args);
 	}
-		/**
+	/**
 	* DESCRIPTOR: an example namespace call 
 	* @param param 
 	* @return return  
@@ -123,7 +78,49 @@ class VIEW extends DAO {
 		return parent::save($table);
 		
 	}
-	
+	/*******************************************************************/
+	/** port out to main repo */
+	/*******************************************************************/
+	/**
+	* DESCRIPTOR: 
+	* 
+	* @param args 
+	* @return return  
+	*/
+	public function parseJSONColumns($args = null){
+		if(1 >= count($args["result"])){
+			return false;
+		}
+		if(!isset($this->JSONColumns) || 0 == count($this->JSONColumns)){
+			return $args["result"];
+		}
+		
+		foreach($result AS $key => $value){
+			if(isset($this->JSONColumns[$key])){
+				$result[$key] = json_decode($value);
+			}
+		}
+		return $result;
+	}
+	/**
+	* DESCRIPTOR: 
+	* 
+	* @param args 
+	*		'result' => $result,
+	*		'ACL_TREE' = $ACL_TREE,
+	* @return return  
+	*/
+	public function getJSONColumnValue($args = null){
+		if(!isset($args["columnName"]) || '' != $args["columnName"]){
+			return false;
+		}
+		if(0 == count($args["result"])){
+			return false;
+		}
+		
+		return json_decode($args["row"][$args["columnName"]]);
+	}
+	/*******************************************************************/
 }
 
 

@@ -1,6 +1,6 @@
 {
 	"name" : "just-core/dao-orm",
-	"description" : "PHP Enterprise HA Framework, Data Access Object Object Relational Manager Stub",
+	"description" : "Object Relational Manager Stub extends Data Access Object ",
 	"license" : "GNU",
 	"keywords" : [
 		"Authentication",

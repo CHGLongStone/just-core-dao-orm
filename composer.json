@@ -3,12 +3,13 @@
 	"description" : "PHP Enterprise HA Framework, Data Access Object Object Relational Manager Stub",
 	"license" : "GNU",
 	"keywords" : [
+		"Authentication",
 		"just-core",
 		"Service Oriented Architechture",
 		"Enterprise",
 		"HA",
-		"Framework",
-		"Authentication"
+		"Framework"
+		
 	],
 	"version" : "0.*",
 	"homepage" : "https://github.com/CHGLongStone/just-core-dao-orm",

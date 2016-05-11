@@ -2,7 +2,7 @@
 /**
  * 
  * @author	Jason Medland<jason.medland@gmail.com>
- * @package	JCORE\SERVICE\DAO
+ * @package	JCORE\SERVICE
  */
 
 
@@ -10,19 +10,15 @@ namespace JCORE\SERVICE\DAO;
 use JCORE\DAO\DAO as DAO;
 
 /**
- * Class DAO_ORM
+ * Class ORM
  *
  * @package JCORE\SERVICE\DAO
 */
-class DAO_ORM {// extends DAO { 
+class ORM extends DAO { 
 	
 	
 	/**
-	 * default view definition
-	 * 
-	 * 
 	 * @access public 
-	 * @var array
 	 */
 	public $VIEW = array();
 
@@ -75,7 +71,7 @@ class DAO_ORM {// extends DAO {
 	* @return outputErrors 
 	*/
 	public function save($table=null){
-		return parent::save($table);
+		#return parent::save($table);
 		
 	}
 	/*******************************************************************/
@@ -87,17 +83,20 @@ class DAO_ORM {// extends DAO {
 	* @param args 
 	* @return return  
 	*/
-	public function parseJSONColumns($args = null){
-		if(1 >= count($args["result"])){
+	public function parseJSONColumns($result = null){
+		if(1 >= count($result)){
 			return false;
 		}
 		if(!isset($this->JSONColumns) || 0 == count($this->JSONColumns)){
-			return $args["result"];
+			return $result;
 		}
 		
 		foreach($result AS $key => $value){
-			if(isset($this->JSONColumns[$key])){
-				$result[$key] = json_decode($value);
+			foreach($this->JSONColumns AS $key2 => $value2){
+				if(isset($value[$value2])){
+					$tmpVal = json_decode($value[$value2], true);
+					$result[$key][$value2] = $tmpVal[$value2];
+				}
 			}
 		}
 		return $result;
@@ -120,9 +119,7 @@ class DAO_ORM {// extends DAO {
 		
 		return json_decode($args["row"][$args["columnName"]]);
 	}
-	/*******************************************************************/
+	
 }
-
-
 
 ?>

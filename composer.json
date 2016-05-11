@@ -1,6 +1,6 @@
 {
 	"name" : "just-core/dao-orm",
-	"description" : "Object Relational Manager Stub extends Data Access Object ",
+	"description" : "Object Relational Manager Stub extends Data Access Object for the just-core eco system",
 	"license" : "GNU",
 	"keywords" : [
 		"Authentication",

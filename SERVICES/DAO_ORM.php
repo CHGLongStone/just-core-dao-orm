@@ -6,15 +6,15 @@
  */
 
 
-namespace JCORE\SERVICE\DAO;
+namespace JCORE\SERVICE\DAO\ORM;
 use JCORE\DAO\DAO as DAO;
 
 /**
  * Class DAO_ORM
  *
- * @package JCORE\SERVICE\DAO
+ * @package JCORE\SERVICE\DAO\ORM
 */
-class DAO_ORM {// extends DAO { 
+class DAO_ORM extends DAO { 
 	
 	
 	/**

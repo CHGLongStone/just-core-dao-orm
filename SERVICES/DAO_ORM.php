@@ -88,19 +88,33 @@ class DAO_ORM extends DAO {
 	* @param args 
 	* @return return  
 	*/
-	public function parseJSONColumns($args = null){
-		if(1 >= count($args["result"])){
+	public function parseJSONColumns($result = null){
+		
+		#echo __METHOD__.'@'.__LINE__.' '.'result count['.count($result).'] <pre>['.var_export($this->JSONColumns, true).']</pre> <br>'.PHP_EOL; 
+		if(1 >= count($result)){
+			#echo __METHOD__.'@'.__LINE__.'FAIL  '.'args<pre>['.var_export(array_keys($args), true).']</pre> <br>'.PHP_EOL; 
 			return false;
 		}
+		#	echo __METHOD__.'@'.__LINE__.' '.'  <br>'.PHP_EOL; 
 		if(!isset($this->JSONColumns) || 0 == count($this->JSONColumns)){
-			return $args["result"];
+			#echo __METHOD__.'@'.__LINE__.' '.'  <br>'.PHP_EOL; 
+			return $result;
 		}
 		
+		#echo __METHOD__.'@'.__LINE__.' '.'  <br>'.PHP_EOL; 
+		#$result = array();
 		foreach($result AS $key => $value){
-			if(isset($this->JSONColumns[$key])){
-				$result[$key] = json_decode($value);
+			#echo __METHOD__.'@'.__LINE__.' $key ['.$key.']'.'   <pre>['.var_export(count($value), true).']</pre> '.'  <br>'.PHP_EOL; 
+			foreach($value AS $key2 => $value2){
+				#echo __METHOD__.'@'.__LINE__.' $key2 ['.$key2.']'.'   <pre>['.var_export(count($value2), true).']</pre> '.'  <br>'.PHP_EOL; 
+				if(in_array($key2, $this->JSONColumns)){
+					#echo __METHOD__.'@'.__LINE__.' ###############$key2 ['.$key2.']'.'   <pre>['.var_export(json_decode($value2, true), true).']</pre> '.'  #################<br>'.PHP_EOL; 
+					$tmpVal = json_decode($value2, true);
+					$result[$key][$key2] = $tmpVal[$key2];
+				}
 			}
 		}
+		
 		return $result;
 	}
 	/**

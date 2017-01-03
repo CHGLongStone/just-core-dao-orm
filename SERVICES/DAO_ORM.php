@@ -1,5 +1,6 @@
 <?php
 /**
+ * DAO_ORM
  * 
  * @author	Jason Medland<jason.medland@gmail.com>
  * @package	JCORE\SERVICE\DAO
@@ -39,8 +40,8 @@ class DAO_ORM extends DAO {
 	* if there's no definition we can't use this type of object 
 	* 
 	* 
-	* @param param 
-	* @return return  
+	* @param array args 
+	* @return null  
 	*/
 	public function __construct($args = null){
 		#echo __METHOD__.'@'.__LINE__.'  '.'<br>'; 
@@ -51,8 +52,8 @@ class DAO_ORM extends DAO {
 	/**
 	* DESCRIPTOR: 
 	* 
-	* @param param 
-	* @return return  
+	* @param array args 
+	* @return null  
 	*/
 	public function init($args){
 		#
@@ -72,6 +73,7 @@ class DAO_ORM extends DAO {
 	
 	/**
 	* DESCRIPTOR: STORES CHANGES TO THE DAO TO THE DB(s)
+	* 
 	* @param	string 	table
 	* @return outputErrors 
 	*/
@@ -85,7 +87,7 @@ class DAO_ORM extends DAO {
 	/**
 	* DESCRIPTOR: 
 	* 
-	* @param args 
+	* @param array result 
 	* @return return  
 	*/
 	public function parseJSONColumns($result = null){
@@ -119,11 +121,11 @@ class DAO_ORM extends DAO {
 	}
 	/**
 	* DESCRIPTOR: 
+	*		'result' => result,
+	*		'ACL_TREE' = ACL_TREE,
 	* 
-	* @param args 
-	*		'result' => $result,
-	*		'ACL_TREE' = $ACL_TREE,
-	* @return return  
+	* @param array args 
+	* @return string    
 	*/
 	public function getJSONColumnValue($args = null){
 		if(!isset($args["columnName"]) || '' != $args["columnName"]){

@@ -27,19 +27,12 @@ class DAO_ORM extends DAO {
 	 */
 	public $VIEW = array();
 
-
-	
-
-
-
-
-
 	/**
 	* DESCRIPTOR: 
 	* first we check the definition has been set
 	* if there's no definition we can't use this type of object 
 	* 
-	* 
+	* @access public
 	* @param array args 
 	* @return null  
 	*/
@@ -52,6 +45,7 @@ class DAO_ORM extends DAO {
 	/**
 	* DESCRIPTOR: 
 	* 
+	* @access public
 	* @param array args 
 	* @return null  
 	*/
@@ -62,8 +56,10 @@ class DAO_ORM extends DAO {
 	}
 	/**
 	* DESCRIPTOR: an example namespace call 
+	* @access public
 	* @param param 
 	* @return return  
+	* 
 	public function initializeFromSchema($DSN, $tableName, $set_fk){
 		echo __METHOD__.'@'.__LINE__.' '.'<br>'.PHP_EOL; 
 		parent::initializeFromSchema($DSN, $tableName, $set_fk);
@@ -74,6 +70,7 @@ class DAO_ORM extends DAO {
 	/**
 	* DESCRIPTOR: STORES CHANGES TO THE DAO TO THE DB(s)
 	* 
+	* @access public
 	* @param	string 	table
 	* @return outputErrors 
 	*/
@@ -87,6 +84,7 @@ class DAO_ORM extends DAO {
 	/**
 	* DESCRIPTOR: 
 	* 
+	* @access public
 	* @param array result 
 	* @return return  
 	*/
@@ -124,6 +122,7 @@ class DAO_ORM extends DAO {
 	*		'result' => result,
 	*		'ACL_TREE' = ACL_TREE,
 	* 
+	* @access public
 	* @param array args 
 	* @return string    
 	*/

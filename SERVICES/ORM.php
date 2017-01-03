@@ -19,6 +19,7 @@ class ORM2{// extends DAO {
 	/**
 	* DESCRIPTOR: 
 	* 
+	* @access public
 	* @param array args 
 	* @return null  
 	*/
@@ -29,6 +30,7 @@ class ORM2{// extends DAO {
 	/**
 	* DESCRIPTOR: 
 	* 
+	* @access public
 	* @param array args 
 	* @return null  
 	*/

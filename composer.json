@@ -12,7 +12,7 @@
 		
 	],
 	"version" : "0.*",
-	"homepage" : "https://github.com/CHGLongStone/just-core-dao-orm",
+	"homepage" : "https://chglongstone.github.io/just-core-dao-orm",
 	"require" : {
 		"php" : ">=5.3.3",
 		"just-core/foundation" : "dev-master"
